@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CandidateCard from "../components/CandidateCard";
+import CandidateCard from "./components/CandidateCard";
 import { fetchCandidate } from "../api";
 
 const CandidateSearch: React.FC = () => {
@@ -38,6 +38,8 @@ const CandidateSearch: React.FC = () => {
     </div>
   );
 };
+
+export default CandidateSearch;
 
 export const saveToLocalStorage = (key: string, value: any) => {
   localStorage.setItem(key, JSON.stringify(value));
