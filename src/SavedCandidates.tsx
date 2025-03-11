@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CandidateCard from "../components/CandidateCard/CandidateCard";
+import CandidateCard from "./components/CandidateCard";
 import { getFromLocalStorage } from "../utils/localStorage";
 
 const SavedCandidates: React.FC = () => {
@@ -23,5 +23,19 @@ const SavedCandidates: React.FC = () => {
     </div>
   );
 };
-
+export const saveToLocalStorage = (key: string, value: any) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+  
+  export const getFromLocalStorage = (key: string): any | null => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  };
+  
+  export const addCandidateToLocalStorage = (candidate: any) => {
+    const existingCandidates = getFromLocalStorage("savedCandidates") || [];
+    existingCandidates.push(candidate);
+    saveToLocalStorage("savedCandidates", existingCandidates);
+  };
+  
 export default SavedCandidates;
